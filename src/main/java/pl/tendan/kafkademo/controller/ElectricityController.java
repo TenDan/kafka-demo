@@ -17,9 +17,7 @@ public class ElectricityController {
     private final ElectricityService electricityService;
 
     @PostMapping
-    public ResponseEntity<?> sendCircuitData(
-            @RequestBody CircuitRequest request
-    ) {
+    public ResponseEntity<?> sendCircuitData(@RequestBody CircuitRequest request) {
         electricityService.passTensionIntensityValues(request.getTensionIntensityTable());
         return ResponseEntity.ok().build();
     }
