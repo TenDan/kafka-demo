@@ -69,6 +69,33 @@ class MessageTest {
                 .isEqualTo(exampleDate);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "Some content 1",
+            "Some content 2",
+            "Some content 3",
+            "Some content 4",
+            "Some content 5",
+    })
+    void shouldApplyValuesFromBuilder(String candidate) {
+        // given
+        Date exampleDate = new Date(System.currentTimeMillis());
+
+        // when
+        Message message = Message.builder()
+                .content(candidate)
+                .creationDate(exampleDate)
+                .build();
+
+        // then
+        assertThat(message.getContent())
+                .isNotNull()
+                .isEqualTo(candidate);
+        assertThat(message.getCreationDate())
+                .isNotNull()
+                .isEqualTo(exampleDate);
+    }
+
     @Test
     void shouldCompareTwoObjectsWithSameData() {
         // given
