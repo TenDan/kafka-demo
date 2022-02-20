@@ -22,7 +22,7 @@ public class ElectricityListener {
     )
     void resistanceListener(ElectricityData data) {
         messageTemplate.send("messages", Message.builder().content("Calculated the resistance").build());
-        log.info(String.format("Calculated resistance: %f", data.getResistance()));
+        log.info(String.format("Calculated resistance: %.2f Ohms", data.getResistance()));
     }
 
     @KafkaListener(
@@ -32,6 +32,6 @@ public class ElectricityListener {
     )
     void powerListener(ElectricityData data) {
         messageTemplate.send("messages", Message.builder().content("Calculated the power").build());
-        log.info(String.format("Calculated power: %f", data.getPower()));
+        log.info(String.format("Calculated power: %.2f Watts", data.getPower()));
     }
 }

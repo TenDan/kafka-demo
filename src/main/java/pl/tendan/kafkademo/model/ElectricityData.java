@@ -18,11 +18,11 @@ public class ElectricityData {
 
     @JsonIgnore
     public Double getResistance() {
-        return this.tension / this.intensity;
+        return Math.round(this.tension / this.intensity * 100) / 100.0;
     }
 
     @JsonIgnore
     public Double getPower() {
-        return this.tension * this.intensity;
+        return Math.round(this.tension * this.intensity * 100) / 100.0;
     }
 }
