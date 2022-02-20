@@ -21,9 +21,8 @@ public class ElectricityListener {
             containerFactory = "tensionAndIntensityFactory"
     )
     void resistanceListener(ElectricityData data) {
-        double resistance = data.getTension() / data.getIntensity();
         messageTemplate.send("messages", Message.builder().content("Calculated the resistance").build());
-        log.info(String.format("Calculated resistance: %f", resistance));
+        log.info(String.format("Calculated resistance: %f", data.getResistance()));
     }
 
     @KafkaListener(
@@ -32,8 +31,7 @@ public class ElectricityListener {
             containerFactory = "tensionAndIntensityFactory"
     )
     void powerListener(ElectricityData data) {
-        double power = data.getTension() * data.getIntensity();
         messageTemplate.send("messages", Message.builder().content("Calculated the power").build());
-        log.info(String.format("Calculated power: %f", power));
+        log.info(String.format("Calculated power: %f", data.getPower()));
     }
 }
